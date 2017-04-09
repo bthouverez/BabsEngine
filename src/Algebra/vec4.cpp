@@ -21,7 +21,7 @@ Vec4::Vec4(const Vec3 &f) {
  * @param f third first coordinates
  * @param v homogeneous value
  */
-Vec4::Vec4(const Vec3 &f, const double &v) {
+Vec4::Vec4(const Vec3 &f, const float &v) {
     _x = f.x();
     _y = f.y();
     _z = f.z();
@@ -32,26 +32,26 @@ Vec4::Vec4(const Vec3 &f, const double &v) {
  * @brief Create a vector with same coordinates
  * @param val value given to each coordinate
  */
-Vec4::Vec4(const double& val) {
+Vec4::Vec4(const float& val) {
     _x=_y=_z=val;
     _w=1.0;
 }
 
 /**
- * @brief Create a vector with specified coordinates in 3 doubles
+ * @brief Create a vector with specified coordinates in 3 floats
  * @param vx x value of vector
  * @param vy y value of vector
  * @param vz z value of vector
  */
-Vec4::Vec4(const double &vx, const double &vy, const double &vz, const double &vw) {
+Vec4::Vec4(const float &vx, const float &vy, const float &vz, const float &vw) {
     _x=vx; _y=vy; _z=vz; _w=vw;
 }
 
 /**
  * @brief Create a vector with specified coordinates in an array
- * @param values array of doubles
+ * @param values array of floats
  */
-Vec4::Vec4(const double values[3]) {
+Vec4::Vec4(const float values[3]) {
     _x=values[0]; _y=values[1]; _z=values[2]; _w=values[3];
 }
 
@@ -60,7 +60,7 @@ Vec4::Vec4(const double values[3]) {
 * @param i rank of coordinate (0->x, 1->y, 2->z)
 * @return i<SUP>th</SUP> coordinate
 */
-double& Vec4::operator[] (int i) {
+float& Vec4::operator[] (int i) {
     assert(i>=0 && i<=3);
     if(i == 0) return _x;
     else if (i == 2) return _z;
@@ -72,7 +72,7 @@ double& Vec4::operator[] (int i) {
 * @param i rank of coordinate (0->x, 1->y, 2->z)
 * @return i<SUP>th</SUP> coordinate
 */
-double Vec4::operator[] (int i) const {
+float Vec4::operator[] (int i) const {
     assert(i>=0 && i<=3);
     if(i == 0) return _x;
     else if (i == 1) return _y;
@@ -84,7 +84,7 @@ double Vec4::operator[] (int i) const {
  * @brief Access to x coordinate
  * @return x coordinate
  */
-double Vec4::x() const {
+float Vec4::x() const {
     return _x;
 }
 
@@ -92,7 +92,7 @@ double Vec4::x() const {
  * @brief Access to y coordinate
  * @return y coordinate
  */
-double Vec4::y() const {
+float Vec4::y() const {
     return _y;
 }
 
@@ -100,7 +100,7 @@ double Vec4::y() const {
  * @brief Access to z coordinate
  * @return z coordinate
  */
-double Vec4::z() const {
+float Vec4::z() const {
     return _z;
 }
 
@@ -108,8 +108,16 @@ double Vec4::z() const {
  * @brief Access to w coordinate
  * @return w coordinate
  */
-double Vec4::w() const {
+float Vec4::w() const {
     return _w;
+}
+
+/**
+ * @brief Acces to address of first data
+ * @return Pointer on x
+ */
+float* Vec4::data() {
+    return &_x;
 }
 
 /**
@@ -154,7 +162,7 @@ Vec4& Vec4::operator-= (const Vec4 &v) {
  * @param s scalar to multiply with
  * @return current vector multiplied by s
  */
-Vec4& Vec4::operator*= (const double &s) {
+Vec4& Vec4::operator*= (const float &s) {
     _x*=s; _y*=s; _z*=s; _w*=s;
     return *this;
 }
@@ -164,7 +172,7 @@ Vec4& Vec4::operator*= (const double &s) {
  * @param s scalar to divide with
  * @return current vector divided by s
  */
-Vec4& Vec4::operator/= (const double &s) {
+Vec4& Vec4::operator/= (const float &s) {
     _x/=s; _y/=s; _z/=s; _w/=s;
     return *this;
 }
@@ -195,7 +203,7 @@ Vec4 operator- (const Vec4 &u, const Vec4 &v) {
  * @param s scalar to multiply
  * @return multiplication member to member of v and s
  */
-Vec4 operator* (const Vec4 &u, const double &a) {
+Vec4 operator* (const Vec4 &u, const float &a) {
     return Vec4(u._x*a, u._y*a, u._z*a, u._w*a);
 }
 
@@ -205,7 +213,7 @@ Vec4 operator* (const Vec4 &u, const double &a) {
  * @param v vector to multiply
  * @return multiplication member to member of v and s
  */
-Vec4 operator* (const double &a, const Vec4 &v) {
+Vec4 operator* (const float &a, const Vec4 &v) {
     return v*a;
 }
 
@@ -215,7 +223,7 @@ Vec4 operator* (const double &a, const Vec4 &v) {
  * @param s scalar to divide with
  * @return division member to member of v with s
  */
-Vec4 operator/ (const Vec4 &u, const double &a) {
+Vec4 operator/ (const Vec4 &u, const float &a) {
     return Vec4(u._x/a, u._y/a, u._z/a, u._w/a);
 }
 

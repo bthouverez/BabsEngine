@@ -15,19 +15,21 @@
  */
 class Mat4 {
 protected:
-  double values[4][4];
+  float _values[4][4];
 
 public:
   Mat4();
-  Mat4(const double &s);
+  Mat4(const float &s);
   Mat4(const Vec3 &v);
-  Mat4(const double &m00, const double &m01, const double &m02, const double &m03, const double &m10, const double &m11, const double &m12, const double &m13, const double &m20, const double &m21, const double &m22, const double &m23, const double &m30, const double &m31, const double &m32, const double &m33);
+  Mat4(const float &m00, const float &m01, const float &m02, const float &m03, const float &m10, const float &m11, const float &m12, const float &m13, const float &m20, const float &m21, const float &m22, const float &m23, const float &m30, const float &m31, const float &m32, const float &m33);
 
   static const Mat4 Zero;
   static const Mat4 Identity;
 
-  double& operator() (const int &i,const int &j);
-  const double& operator() (const int &i,const int &j) const;
+  float& operator() (const int &i,const int &j);
+  const float& operator() (const int &i,const int &j) const;
+
+  float* data();
 
   // Unary operators
   Mat4 operator+ () const;
@@ -37,8 +39,8 @@ public:
   Mat4& operator+= (const Mat4 &m);
   Mat4& operator-= (const Mat4 &m);
   Mat4& operator*= (const Mat4 &m);
-  Mat4& operator*= (const double &s);
-  Mat4& operator/= (const double &s);
+  Mat4& operator*= (const float &s);
+  Mat4& operator/= (const float &s);
 
   // Binary operators
   friend Mat4 operator+ (const Mat4 &m1, const Mat4 &m2);
@@ -47,25 +49,28 @@ public:
 
   friend std::ostream& operator<< (std::ostream &os, const Mat4 &m);
 
-  double determinant() const;
-  friend double determinant(const Mat4 &m);
-  double trace() const;
-  friend double trace(const Mat4 &m);
+  float determinant() const;
+  friend float determinant(const Mat4 &m);
+  float trace() const;
+  friend float trace(const Mat4 &m);
   Mat4 inverse() const;
+
+  void lookAt(const Vec3 &from, const Vec3 &to, const Vec3 &up);
+  void perspective(const float &fov, const float &aspect, const float &znear, const float &zfar);
 
 };
 
 float radians(const float deg);
 float degrees(const float rad);
-Mat4 Scale(const double &x, const double &y, const double &z);
+Mat4 Scale(const float &x, const float &y, const float &z);
 Mat4 Scale(const Vec3 &v);
-Mat4 Scale(const double &s);
+Mat4 Scale(const float &s);
 Mat4 Translation(const Vec3 &v);
-Mat4 Translation(const double &x, const double &y, const double &z);
-Mat4 RotationX(const double &a);
-Mat4 RotationY(const double &a);
-Mat4 RotationZ(const double &a);
-Mat4 Rotation(const Vec3 &ax, const double &an);
+Mat4 Translation(const float &x, const float &y, const float &z);
+Mat4 RotationX(const float &a);
+Mat4 RotationY(const float &a);
+Mat4 RotationZ(const float &a);
+Mat4 Rotation(const Vec3 &ax, const float &an);
 
 Mat4 LookAt(const Vec3 &from, const Vec3 &to, const Vec3 &up);
 Mat4 Perspective(const float &fov, const float &aspect, const float &znear,	const float &zfar);

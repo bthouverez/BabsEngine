@@ -21,23 +21,25 @@
  */
 class Vec3 {
 protected:
-    double _x, _y, _z;
+    float _x, _y, _z;
 
 public:
     /////// Constructors ///////
     Vec3();
     Vec3(const Vec3 &f, const Vec3 &t);
-    Vec3(const double& val);
-    Vec3(const double& vx, const double& vy, const double& vz);
-    Vec3(const double values[3]);
+    Vec3(const float& val);
+    Vec3(const float& vx, const float& vy, const float& vz);
+    Vec3(const float values[3]);
 
     /////// Accessors ///////
-    double& operator[] (int i);
-    double operator[] (int i) const;
+    float& operator[] (int i);
+    float operator[] (int i) const;
 
-    double x() const;
-    double y() const;
-    double z() const;
+    float x() const;
+    float y() const;
+    float z() const;
+
+    float* data();
 
     /////// Unary operators ///////
     Vec3 operator+ () const;
@@ -46,8 +48,8 @@ public:
     /////// Assignment unary operators ///////
     Vec3& operator+= (const Vec3 &v);
     Vec3& operator-= (const Vec3 &v);
-    Vec3& operator*= (const double &s);
-    Vec3& operator/= (const double &s);
+    Vec3& operator*= (const float &s);
+    Vec3& operator/= (const float &s);
 
     // Binary operators
     // Does it make sense to compare vector on coordinates?
@@ -60,9 +62,9 @@ public:
     /////// Binary operators ///////
     friend Vec3 operator+ (const Vec3 &u, const Vec3 &v);
     friend Vec3 operator- (const Vec3 &u, const Vec3 &v);
-    friend Vec3 operator* (const Vec3 &v, const double &s);
-    friend Vec3 operator* (const double &s, const Vec3 &v);
-    friend Vec3 operator/ (const Vec3 &v, const double &s);
+    friend Vec3 operator* (const Vec3 &v, const float &s);
+    friend Vec3 operator* (const float &s, const Vec3 &v);
+    friend Vec3 operator/ (const Vec3 &v, const float &s);
 
     /////// Boolean functions ///////
     friend int operator== (const Vec3 &u, const Vec3 &v);
@@ -71,16 +73,16 @@ public:
     friend std::ostream& operator<< (std::ostream &os, const Vec3 &v);
 
     ////// Vector operations //////
-    friend double dotProduct (const Vec3 &u, const Vec3 &v);
+    friend float dotProduct (const Vec3 &u, const Vec3 &v);
     friend Vec3 crossProduct (const Vec3 &u, const Vec3 &v);
-    friend double length(const Vec3 &v);
-    double length();
+    friend float length(const Vec3 &v);
+    float length();
     void normalize();
     friend Vec3 normalized(const Vec3 &v);
-    friend double cosine(const Vec3 &u,const Vec3 &v);
+    friend float cosine(const Vec3 &u,const Vec3 &v);
     friend bool collinear(const Vec3 &u, const Vec3 &v);
     friend bool coplanar(const Vec3 &u, const Vec3 &v, const Vec3 &w);
-    friend double distance(const Vec3 &u, const Vec3 &v);
+    friend float distance(const Vec3 &u, const Vec3 &v);
 };
 
 

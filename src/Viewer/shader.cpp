@@ -2,6 +2,7 @@
 
 void Shader::destroy()
 {
+	/*
     OpenGLFunctionCore *gl = QOpenGLContext::currentContext()->versionFunctions<OpenGLFunctionCore>();
 	gl->glDeleteShader(vertex_);
 	gl->glDeleteShader(fragment_);
@@ -10,10 +11,12 @@ void Shader::destroy()
 	fragment_ = 0;
 	program_ = 0;
 	initOK_ = false;
+	*/
 }
 
 bool Shader::init()
 {
+	/*
     OpenGLFunctionCore *gl = QOpenGLContext::currentContext()->versionFunctions<OpenGLFunctionCore>();
 
 	//------- Instanciation -------
@@ -45,10 +48,12 @@ bool Shader::init()
 		return false;
 	}
 	return (initOK_ = true);
+	*/
 }
 
 bool Shader::initShaderStage(GLuint &shader, GLenum shader_stage_type, std::string const &source_filename)
 {
+	/*
     OpenGLFunctionCore *gl = QOpenGLContext::currentContext()->versionFunctions<OpenGLFunctionCore>();
 
 	if (shader_stage_type != GL_VERTEX_SHADER && shader_stage_type != GL_FRAGMENT_SHADER) {
@@ -106,6 +111,7 @@ Shader& Shader::operator=(Shader const &shader)
 		init();
 	}
 	return *this;
+	*/
 }
 
 GLuint Shader::getProgramID() const {

@@ -1,41 +1,29 @@
 #include "glwidget.h"
 
-#include "../Utilities/b_printer.h"
+
+GLWidget::GLWidget()
+{   
+}
 
 GLWidget::~GLWidget()
-{	
+{   
 }
 
 void GLWidget::cleanup()
 {
     // liberer les ressources gl la.
 }
-/*
-QSize GLWidget::minimumSizeHint() const
-{
-    return QSize(400, 300);
-}
-
-QSize GLWidget::sizeHint() const
-{
-    //return QSize(1366, 900);
-}
-
-void GLWidget::resizeGL(int w, int h)
-{
-}
-*/
 
 void GLWidget::initializeGL() {
 
     // Important : pour appeler automatiquement ta fonction de cleanUp lors de la destruction du widget.
-    connect(context(), &QOpenGLContext::aboutToBeDestroyed, this, &GLWidget::cleanup);
+    //connect(context(), &QOpenGLContext::aboutToBeDestroyed, this, &GLWidget::cleanup);
 
 	// Important : toute appli opengl doit "charger" les fonctions opengl...
-    initializeOpenGLFunctions();
+    //initializeOpenGLFunctions();
 
     _scale = 1.f;
-    _scalem = QMatrix4x4();
+    _scalem = Mat4();
 
     // shaders
     Shader shader("/home/babs/Documents/e-roma/Hybride/src/Viewer/vertex.glsl", "/home/babs/Documents/e-roma/Hybride/src/Viewer/fragment.glsl", std::cerr);
@@ -44,16 +32,16 @@ void GLWidget::initializeGL() {
 
     // camera
     m_camera = b_Camera();
-    m_camera.lookAt(QVector3D(0.0, 0.0, 5.0),  QVector3D(0.0, 0.0, 0.0),QVector3D(0.0, 1.0, 0.0));
+    m_camera.lookAt(Vec3(0.0, 0.0, 5.0),  Vec3(0.0, 0.0, 0.0),Vec3(0.0, 1.0, 0.0));
     m_camera.projection(800, 600, 45);
 
     // data points
-    QVector<QVector3D> points;
-    points << QVector3D(-0.5, -0.5, 0);
-    points << QVector3D(0.5, -0.5, 0);
-    points << QVector3D(0.0, 0.5, 0);
+    std::vector<Vec3> points;
+    points.push_back(Vec3(-0.5, -0.5, 0));
+    points.push_back(Vec3(0.5, -0.5, 0));
+    points.push_back(Vec3(0.0, 0.5, 0));
 
-
+/*
     // vao
     glGenVertexArrays(1, &m_vao);
     glBindVertexArray(m_vao);
@@ -85,12 +73,13 @@ void GLWidget::initializeGL() {
     glUseProgram(0);
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+    */
     return;
 }
 
 void GLWidget::paintGL()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
    // glLoadIdentity();
    // glScalef(_scale, _scale, _scale);
@@ -98,11 +87,11 @@ void GLWidget::paintGL()
   //  b_Printer printer;
     //printer(_scalem);
 
-    QMatrix4x4 m = QMatrix4x4();
-    QMatrix4x4 v = QMatrix4x4(); //m_camera.view();
-    QMatrix4x4 p = QMatrix4x4(); // m_camera.projection();
-    QMatrix4x4 mvp = _scalem * p * v * m;
-
+    Mat4 m = Mat4();
+    Mat4 v = Mat4(); //m_camera.view();
+    Mat4 p = Mat4(); // m_camera.projection();
+    Mat4 mvp = _scalem * p * v * m;
+/*
     // configurer le pipeline, selectionner le vertex array a utiliser
     glBindVertexArray(m_vao);
     assert(m_vao!=0);
@@ -118,17 +107,6 @@ void GLWidget::paintGL()
     // cleaning
     glUseProgram(0);
     glBindVertexArray(0);
+    */
     return;
 }
-
-
-void GLWidget::wheelEvent(QWheelEvent *event) {
-    if( event != NULL ){
-        float v = event->delta();
-        _scalem *= v > 0 ? 1.15 : 1/1.15;
-        _scalem(3, 3) = 1.0;
-        update();
-    }
-}
-
-

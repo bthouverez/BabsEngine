@@ -2,7 +2,7 @@
 
 /*!
   \class Mat4 matrix.h
-  \brief Mat4 implements a 4x4 double matrix. Components are stored in a single
+  \brief Mat4 implements a 4x4 float matrix. Components are stored in a single
   dimension array, starting from element a<SUB>00</SUB> and sorting components
   by column.
 */
@@ -16,10 +16,10 @@ const Mat4 Mat4::Identity(1.0);
 
 /**
  * @brief Construct empty matrix
- * @details all values are set to 0
+ * @details all _values are set to 0
  */
 Mat4::Mat4() {
-    values[0][0] = values[0][1] = values[0][2] = values[0][3] = values[1][0] = values[1][1] = values[1][2] = values[1][3] = values[2][0] = values[2][1] = values[2][2] = values[2][3] = values[3][0] = values[3][1] = values[3][2] = values[3][3] = 0.0;
+    _values[0][0] = _values[0][1] = _values[0][2] = _values[0][3] = _values[1][0] = _values[1][1] = _values[1][2] = _values[1][3] = _values[2][0] = _values[2][1] = _values[2][2] = _values[2][3] = _values[3][0] = _values[3][1] = _values[3][2] = _values[3][3] = 0.0;
 }
 
 /**
@@ -27,37 +27,37 @@ Mat4::Mat4() {
  * @details Given value is used for third first diagonal points, last point of diagonal set to 1
  * @param s value of diagonal
  */
-Mat4::Mat4(const double &s) {
-    values[0][0] = values[1][1] = values[2][2] = s;
-    values[3][3] = 1.0;
-    values[0][1] =
-            values[0][2] =
-            values[0][3] =
-            values[1][0] =
-            values[1][2] =
-            values[1][3] =
-            values[2][0] =
-            values[2][1] =
-            values[2][3] =
-            values[3][0] =
-            values[3][1] =
-            values[3][2] = 0.0;
+Mat4::Mat4(const float &s) {
+    _values[0][0] = _values[1][1] = _values[2][2] = s;
+    _values[3][3] = 1.0;
+    _values[0][1] =
+            _values[0][2] =
+            _values[0][3] =
+            _values[1][0] =
+            _values[1][2] =
+            _values[1][3] =
+            _values[2][0] =
+            _values[2][1] =
+            _values[2][3] =
+            _values[3][0] =
+            _values[3][1] =
+            _values[3][2] = 0.0;
 }
 
 /**
  * @brief Construct matrix with given vector
  * @details Given vector is used for third first diagonal points, last point of diagonal set to 1
- * @param v values of diagonal
+ * @param v _values of diagonal
  */
 Mat4::Mat4(const Vec3 &v) {
     Mat4(1.0);
-    values[0][0] = v.x();
-    values[1][1] = v.y();
-    values[2][2] = v.z();
+    _values[0][0] = v.x();
+    _values[1][1] = v.y();
+    _values[2][2] = v.z();
 }
 
 /**
- * @brief Construct matrix with given values
+ * @brief Construct matrix with given _values
  * @param m00 value at row 0 and column 0
  * @param m01 value at row 0 and column 1
  * @param m02 value at row 0 and column 2
@@ -75,43 +75,52 @@ Mat4::Mat4(const Vec3 &v) {
  * @param m32 value at row 3 and column 2
  * @param m33 value at row 3 and column 3
  */
-Mat4::Mat4(const double &m00, const double &m01, const double &m02, const double &m03, const double &m10, const double &m11, const double &m12, const double &m13, const double &m20, const double &m21, const double &m22, const double &m23, const double &m30, const double &m31, const double &m32, const double &m33) {
-    values[0][0] = m00;
-    values[0][1] = m01;
-    values[0][2] = m02;
-    values[0][3] = m03;
-    values[1][0] = m10;
-    values[1][1] = m11;
-    values[1][2] = m12;
-    values[1][3] = m13;
-    values[2][0] = m20;
-    values[2][1] = m21;
-    values[2][2] = m22;
-    values[2][3] = m23;
-    values[3][0] = m30;
-    values[3][1] = m31;
-    values[3][2] = m32;
-    values[3][3] = m33;
+Mat4::Mat4(const float &m00, const float &m01, const float &m02, const float &m03, const float &m10, const float &m11, const float &m12, const float &m13, const float &m20, const float &m21, const float &m22, const float &m23, const float &m30, const float &m31, const float &m32, const float &m33) {
+    _values[0][0] = m00;
+    _values[0][1] = m01;
+    _values[0][2] = m02;
+    _values[0][3] = m03;
+    _values[1][0] = m10;
+    _values[1][1] = m11;
+    _values[1][2] = m12;
+    _values[1][3] = m13;
+    _values[2][0] = m20;
+    _values[2][1] = m21;
+    _values[2][2] = m22;
+    _values[2][3] = m23;
+    _values[3][0] = m30;
+    _values[3][1] = m31;
+    _values[3][2] = m32;
+    _values[3][3] = m33;
 }
 
 /**
- * @brief Write access to matrix values
+ * @brief Write access to matrix _values
  * @param i row in matrix
  * @param j column in matrix
  * @return value in matrix at i, j
  */
-double& Mat4::operator() (const int &i,const int &j) {
-    return values[i][j];
+float& Mat4::operator() (const int &i,const int &j) {
+    return _values[i][j];
 }
 
 /**
- * @brief Read access to matrix values
+ * @brief Read access to matrix _values
  * @param i row in matrix
  * @param j column in matrix
  * @return value in matrix at i, j
  */
-const double& Mat4::operator() (const int &i,const int &j) const {
-    return values[i][j];
+const float& Mat4::operator() (const int &i,const int &j) const {
+    return _values[i][j];
+}
+
+
+/**
+ * @brief Acces to address of first data
+ * @return Pointer on x
+ */
+float* Mat4::data() {
+    return &_values[0][0];
 }
 
 /**
@@ -130,7 +139,7 @@ Mat4 Mat4::operator- () const {
     Mat4 m;
     for(int ii=0; ii<4; ii++)
         for(int jj=0; ii<4; jj++)
-            m(ii, jj) = -values[ii][jj];
+            m(ii, jj) = -_values[ii][jj];
     return m;
 }
 
@@ -142,7 +151,7 @@ Mat4 Mat4::operator- () const {
 Mat4& Mat4::operator+= (const Mat4 &m) {
     for(int ii=0; ii<4; ii++)
         for(int jj=0; ii<4; jj++)
-            (*this)(ii, jj) = values[ii][jj] + m(ii, jj);
+            (*this)(ii, jj) = _values[ii][jj] + m(ii, jj);
     return *this;
 }
 
@@ -154,7 +163,7 @@ Mat4& Mat4::operator+= (const Mat4 &m) {
 Mat4& Mat4::operator-= (const Mat4 &m) {
     for(int ii=0; ii<4; ii++)
         for(int jj=0; ii<4; jj++)
-            (*this)(ii, jj) = values[ii][jj] - m(ii, jj);
+            (*this)(ii, jj) = _values[ii][jj] - m(ii, jj);
     return *this;
 }
 
@@ -174,7 +183,7 @@ Mat4& Mat4::operator*= (const Mat4 &m) {
  * @param s scalar to multiply with
  * @return multiplication of current matrix with s
  */
-Mat4& Mat4::operator*= (const double &s) {
+Mat4& Mat4::operator*= (const float &s) {
     for(int ii=0; ii<4; ii++)
         for(int jj=0; ii<4; jj++)
             (*this)(ii, jj) *= s;
@@ -186,7 +195,7 @@ Mat4& Mat4::operator*= (const double &s) {
  * @param s scalar to divide with
  * @return division of current matrix with s
  */
-Mat4& Mat4::operator/= (const double &s) {
+Mat4& Mat4::operator/= (const float &s) {
     for(int ii=0; ii<4; ii++)
         for(int jj=0; ii<4; jj++)
             (*this)(ii, jj) /= s;
@@ -231,7 +240,7 @@ Mat4 operator* (const Mat4 &m1, const Mat4 &m2) {
     Mat4 m;
     for(int i=0; i<4; i++)
         for(int j=0; j<4; j++)
-            m.values[i][j]= m1(i, 0) * m2(0, j) + m1(i, 1) * m2(1, j) + m1(i, 2) * m2(2, j) + m1(i, 3) * m2(3, j);
+            m._values[i][j]= m1(i, 0) * m2(0, j) + m1(i, 1) * m2(1, j) + m1(i, 2) * m2(2, j) + m1(i, 3) * m2(3, j);
     return m;
 }
 
@@ -257,12 +266,12 @@ std::ostream& operator<< (std::ostream &os, const Mat4 &m) {
  * @details Decomposition of current Mat4 in four Mat3 and compute determinant for each Mat3
  * @return determinant of current matrix
  */
-double Mat4::determinant() const {
-    Mat3 m1(values[1][1], values[1][2], values[1][3], values[2][1], values[2][2], values[2][3], values[3][1], values[3][2], values[3][3]);
-    Mat3 m2(values[1][0], values[1][2], values[1][3], values[2][0], values[2][2], values[2][3], values[3][0], values[3][2], values[3][3]);
-    Mat3 m3(values[1][0], values[1][1], values[1][3], values[2][0], values[2][1], values[2][3], values[3][0], values[3][1], values[3][3]);
-    Mat3 m4(values[1][0], values[1][1], values[1][2], values[2][0], values[2][1], values[2][2], values[3][0], values[3][1], values[3][2]);
-    return values[0][0]*m1.determinant() - values[0][1]*m2.determinant() + values[0][2]*m3.determinant() - values[0][3]*m4.determinant();
+float Mat4::determinant() const {
+    Mat3 m1(_values[1][1], _values[1][2], _values[1][3], _values[2][1], _values[2][2], _values[2][3], _values[3][1], _values[3][2], _values[3][3]);
+    Mat3 m2(_values[1][0], _values[1][2], _values[1][3], _values[2][0], _values[2][2], _values[2][3], _values[3][0], _values[3][2], _values[3][3]);
+    Mat3 m3(_values[1][0], _values[1][1], _values[1][3], _values[2][0], _values[2][1], _values[2][3], _values[3][0], _values[3][1], _values[3][3]);
+    Mat3 m4(_values[1][0], _values[1][1], _values[1][2], _values[2][0], _values[2][1], _values[2][2], _values[3][0], _values[3][1], _values[3][2]);
+    return _values[0][0]*m1.determinant() - _values[0][1]*m2.determinant() + _values[0][2]*m3.determinant() - _values[0][3]*m4.determinant();
 }
 
 /**
@@ -270,7 +279,7 @@ double Mat4::determinant() const {
  * @param m matrix to calculate determinant on
  * @return determiannt of m
  */
-double determinant(const Mat4 &m) {
+float determinant(const Mat4 &m) {
     return m.determinant();
 }
 
@@ -279,8 +288,8 @@ double determinant(const Mat4 &m) {
  * @details Trace of matrix is the sum of its diagonal elements
  * @return trace of current matrix
  */
-double Mat4::trace() const {
-    return values[0][0]+values[1][1]+values[2][2]+values[3][3];
+float Mat4::trace() const {
+    return _values[0][0]+_values[1][1]+_values[2][2]+_values[3][3];
 }
 
 /**
@@ -288,7 +297,7 @@ double Mat4::trace() const {
  * @param m matrix to calculate trace on
  * @return trace of m
  */
-double trace(const Mat4 &m) {
+float trace(const Mat4 &m) {
     return m.trace();
 }
 
@@ -369,6 +378,52 @@ Mat4 Mat4::inverse() const {
 
 
 
+/**
+ * @brief Create a Lookat matrix
+ * @details based on gKit2light framework, thank you J.C.Iehl
+ * @param from point of view
+ * @param to point to look
+ * @param up vector representing up direction
+ * @return matrix representing camera placement from from, looking point to with up direction
+ */
+void Mat4::lookAt(const Vec3 &from, const Vec3 &to, const Vec3 &up) {
+    Vec3 dir   = normalized( Vec3(from, to) );
+    Vec3 right = normalized( crossProduct(dir, normalized(up)) );
+    Vec3 newUp = normalized( crossProduct(right, dir) );
+
+    Mat4(
+        right.x(), newUp.x(), -dir.x(), from.x(),
+        right.y(), newUp.y(), -dir.y(), from.y(),
+        right.z(), newUp.z(), -dir.z(), from.z(),
+        0,       0,        0,     1);
+
+    inverse();
+}
+
+/**
+ * @brief Create a perspective matrix
+ * @details based on gKit2light framework, thank you J.C.Iehl
+ * @param fov opening angle
+ * @param aspect image size rapport
+ * @param znear near depth limit
+ * @param zfar far depth limit
+ * @return
+ */
+void Mat4::perspective(const float &fov, const float &aspect, const float &znear, const float &zfar) {
+    // perspective, openGL version
+    float itan= 1 / tanf(radians(fov) * 0.5f);
+    float id= 1 / (znear - zfar);
+
+    Mat4(
+        itan/aspect,    0,      0,               0,
+        0,              itan,   0,               0,
+        0,              0,      (zfar+znear)*id, 2.f*zfar*znear*id,
+        0,              0,      -1,              0);
+}
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -405,7 +460,7 @@ float degrees(const float rad) {
  * @param z scale on z axis
  * @return scaling matrix
  */
-Mat4 Scale(const double &x, const double &y, const double &z) {
+Mat4 Scale(const float &x, const float &y, const float &z) {
     return Mat4(Vec3(x, y, z));
 }
 
@@ -435,7 +490,7 @@ Mat4 Scale(const Vec3 &v) {
  * @param s scaling rate
  * @return scaling matrix
  */
-Mat4 Scale(const double &s) {
+Mat4 Scale(const float &s) {
    return  Mat4(s);
 }
 
@@ -471,7 +526,7 @@ Mat4 Translation(const Vec3 &v) {
  * @param z translation along Z axis
  * @return translation matrix for vector (x, y, z)
  */
-Mat4 Translation(const double &x, const double &y, const double &z) {
+Mat4 Translation(const float &x, const float &y, const float &z) {
     return Translation(Vec3(x, y, z));
 }
 
@@ -486,7 +541,7 @@ Mat4 Translation(const double &x, const double &y, const double &z) {
  * @param a angle or rotation in degree
  * @return rotation matrix around X axis
  */
-Mat4 RotationX(const double &a) {
+Mat4 RotationX(const float &a) {
     float sin_t= sinf(radians(a));
     float cos_t= cosf(radians(a));
     return Mat4(
@@ -508,7 +563,7 @@ Mat4 RotationX(const double &a) {
  * @param a angle or rotation in degree
  * @return rotation matrix around y axis
  */
-Mat4 RotationY(const double &a) {
+Mat4 RotationY(const float &a) {
     float sin_t= sinf(radians(a));
     float cos_t= cosf(radians(a));
     return Mat4(
@@ -529,7 +584,7 @@ Mat4 RotationY(const double &a) {
  * @param a angle or rotation in degree
  * @return rotation matrix around Z axis
  */
-Mat4 RotationZ(const double &a) {
+Mat4 RotationZ(const float &a) {
     float sin_t= sinf(radians(a));
     float cos_t= cosf(radians(a));
     return Mat4(
@@ -545,7 +600,7 @@ Mat4 RotationZ(const double &a) {
  * @param an angle of rotation in degree
  * @return rotation matrix around ax axis of an degree
  */
-Mat4 Rotation(const Vec3 &ax, const double &an) {
+Mat4 Rotation(const Vec3 &ax, const float &an) {
     Vec3 a= normalized(ax);
     float s= sinf(radians(an));
     float c= cosf(radians(an));

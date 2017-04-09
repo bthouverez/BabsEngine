@@ -1,27 +1,27 @@
 #ifndef CAMERA_H_
 #define CAMERA_H_
 
-#include <QMatrix4x4>
-#include <QVector3D>
+#include "../Algebra/mat4.h"
+#include "../Algebra/vec3.h"
 
 class b_Camera {
 
 public:
     b_Camera();
-    b_Camera(const QVector3D &o, const QVector3D &d, const QVector3D &u);
+    b_Camera(const Vec3 &o, const Vec3 &d, const Vec3 &u);
 
     ~b_Camera();
 
-    QMatrix4x4 view() { return v; }
-    QMatrix4x4 projection() { return p; }
+    Mat4 view() { return v; }
+    Mat4 projection() { return p; }
 
     void projection(const float &width, const float &height, const float &fov);
-    void lookAt(const QVector3D &f, const QVector3D &t, const QVector3D &u);
+    void lookAt(const Vec3 &f, const Vec3 &t, const Vec3 &u);
 
 
 private:
-    QMatrix4x4 v;
-    QMatrix4x4 p;
+    Mat4 v;
+    Mat4 p;
 };
 
 #endif // CAMERA_H_

@@ -21,25 +21,25 @@ Vec3::Vec3(const Vec3 &f, const Vec3 &t) {
  * @brief Create a vector with same coordinates
  * @param val value given to each coordinate
  */
-Vec3::Vec3(const double& val) {
+Vec3::Vec3(const float& val) {
     _x=_y=_z=val;
 }
 
 /**
- * @brief Create a vector with specified coordinates in 3 doubles
+ * @brief Create a vector with specified coordinates in 3 floats
  * @param vx x value of vector
  * @param vy y value of vector
  * @param vz z value of vector
  */
-Vec3::Vec3(const double& vx, const double& vy, const double& vz) {
+Vec3::Vec3(const float& vx, const float& vy, const float& vz) {
     _x=vx; _y=vy; _z=vz;
 }
 
 /**
  * @brief Create a vector with specified coordinates in an array
- * @param values array of doubles
+ * @param values array of floats
  */
-Vec3::Vec3(const double values[3]) {
+Vec3::Vec3(const float values[3]) {
     _x=values[0]; _y=values[1]; _z=values[2];
 }
 
@@ -48,7 +48,7 @@ Vec3::Vec3(const double values[3]) {
 * @param i rank of coordinate (0->x, 1->y, 2->z)
 * @return i<SUP>th</SUP> coordinate
 */
-double& Vec3::operator[] (int i) {
+float& Vec3::operator[] (int i) {
     assert(i>=0 && i<=2);
     if(i == 0) return _x;
     else if (i == 1) return _y;
@@ -60,7 +60,7 @@ double& Vec3::operator[] (int i) {
 * @param i rank of coordinate (0->x, 1->y, 2->z)
 * @return i<SUP>th</SUP> coordinate
 */
-double Vec3::operator[] (int i) const {
+float Vec3::operator[] (int i) const {
     assert(i>=0 && i<=2);
     if(i == 0) return _x;
     else if (i == 1) return _y;
@@ -71,7 +71,7 @@ double Vec3::operator[] (int i) const {
  * @brief Access to x coordinate
  * @return x coordinate
  */
-double Vec3::x() const {
+float Vec3::x() const {
     return _x;
 }
 
@@ -79,7 +79,7 @@ double Vec3::x() const {
  * @brief Access to y coordinate
  * @return y coordinate
  */
-double Vec3::y() const {
+float Vec3::y() const {
     return _y;
 }
 
@@ -87,8 +87,16 @@ double Vec3::y() const {
  * @brief Access to z coordinate
  * @return z coordinate
  */
-double Vec3::z() const {
+float Vec3::z() const {
     return _z;
+}
+
+/**
+ * @brief Acces to address of first data
+ * @return Pointer on x
+ */
+float* Vec3::data() {
+    return &_x;
 }
 
 /**
@@ -133,7 +141,7 @@ Vec3& Vec3::operator-= (const Vec3 &v) {
  * @param s scalar to multiply with
  * @return current vector multiplied by s
  */
-Vec3& Vec3::operator*= (const double &s) {
+Vec3& Vec3::operator*= (const float &s) {
     _x*=s; _y*=s; _z*=s;
     return *this;
 }
@@ -143,7 +151,7 @@ Vec3& Vec3::operator*= (const double &s) {
  * @param s scalar to divide with
  * @return current vector divided by s
  */
-Vec3& Vec3::operator/= (const double &s) {
+Vec3& Vec3::operator/= (const float &s) {
     _x/=s; _y/=s; _z/=s;
     return *this;
 }
@@ -194,7 +202,7 @@ Vec3 operator- (const Vec3 &u, const Vec3 &v) {
  * @param s scalar to multiply
  * @return multiplication member to member of v and s
  */
-Vec3 operator* (const Vec3 &u, const double &a) {
+Vec3 operator* (const Vec3 &u, const float &a) {
     return Vec3(u._x*a, u._y*a, u._z*a);
 }
 
@@ -204,7 +212,7 @@ Vec3 operator* (const Vec3 &u, const double &a) {
  * @param v vector to multiply
  * @return multiplication member to member of v and s
  */
-Vec3 operator* (const double &a, const Vec3 &v) {
+Vec3 operator* (const float &a, const Vec3 &v) {
     return v*a;
 }
 
@@ -214,7 +222,7 @@ Vec3 operator* (const double &a, const Vec3 &v) {
  * @param s scalar to divide with
  * @return division member to member of v with s
  */
-Vec3 operator/ (const Vec3 &u, const double &a) {
+Vec3 operator/ (const Vec3 &u, const float &a) {
     return Vec3(u._x/a, u._y/a, u._z/a);
 }
 
@@ -256,9 +264,9 @@ std::ostream& operator<<(std::ostream &os, const Vec3 &v) {
  * @brief Compute scalar product between two vectors
  * @param u first vector
  * @param v second vector
- * @return double resulting the dot product of u and v
+ * @return float resulting the dot product of u and v
  */
-double dotProduct(const Vec3 &u, const Vec3 &v) {
+float dotProduct(const Vec3 &u, const Vec3 &v) {
     return u._x*v._x + u._y*v._y + u._z*v._z;
 }
 
@@ -277,7 +285,7 @@ Vec3 crossProduct(const Vec3 &u, const Vec3 &v) {
  * @param v vector to compute norm
  * @return length of v
  */
-double length(const Vec3 &v) {
+float length(const Vec3 &v) {
     return sqrt(v._x*v._x + v._y*v._y + v._z*v._z);
 }
 
@@ -285,7 +293,7 @@ double length(const Vec3 &v) {
  * @brief Calculate length of current vector
  * @return length of current vector
  */
-double Vec3::length() {
+float Vec3::length() {
     return sqrt(_x*_x + _y*_y + _z*_z);
 }
 
@@ -293,7 +301,7 @@ double Vec3::length() {
  * @brief Normalize current vector
  */
 void Vec3::normalize() {
-    double n = length();
+    float n = length();
     _x /= n; _y /= n; _z /= n;
 }
 
@@ -303,7 +311,7 @@ void Vec3::normalize() {
  * @return v normalized
  */
 Vec3 normalized(const Vec3 &v) {
-    double n = length(v);
+    float n = length(v);
     return Vec3(v._x/n, v._y/n, v._z/n);
 }
 
@@ -314,7 +322,7 @@ Vec3 normalized(const Vec3 &v) {
  * @param v second vector
  * @return cosine of u and v
  */
-double cosine(const Vec3 &u,const Vec3 &v) {
+float cosine(const Vec3 &u,const Vec3 &v) {
     return dotProduct(normalized(u), normalized(v));
 }
 
@@ -348,7 +356,7 @@ bool coplanar(const Vec3 &u, const Vec3 &v, const Vec3 &w) {
  * @param v second point
  * @return distance bewteen u and v
  */
-double distance(const Vec3 &u, const Vec3 &v) {
+float distance(const Vec3 &u, const Vec3 &v) {
     return sqrt( (u.x()-v.x())*(u.x()-v.x()) + (u.y()-v.y())*(u.y()-v.y()) + (u.z()-v.z())*(u.z()-v.z()) );
 }
 
@@ -364,23 +372,23 @@ inline int max(const int a, const int b) {
     return a>b ? a : b;
 }
 
-//! Return the minimum between two doubles
-inline double min(const double& a, const double& b) {
+//! Return the minimum between two floats
+inline float min(const float& a, const float& b) {
     return a<b ? a : b;
 }
 
-//! Return the maximum between two doubles
-inline double max(const double& a, const double& b) {
+//! Return the maximum between two floats
+inline float max(const float& a, const float& b) {
     return a>b ? a : b;
 }
 
-//! Return the minimum bexteen three doubles
-inline double min(const double& a, const double& b, const double& c) {
+//! Return the minimum bexteen three floats
+inline float min(const float& a, const float& b, const float& c) {
     return min(min(a, c), min(b, c));
 }
 
-//! Return the maximum bexteen three doubles
-inline double max(const double& a, const double& b, const double& c) {
+//! Return the maximum bexteen three floats
+inline float max(const float& a, const float& b, const float& c) {
     return max(max(a, c), max(b, c));
 }
 */

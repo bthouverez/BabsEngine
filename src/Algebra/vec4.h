@@ -22,25 +22,27 @@
  */
 class Vec4 {
 protected:
-    double _x, _y, _z, _w;
+    float _x, _y, _z, _w;
 
 public:
     /////// Constructors ///////
     Vec4();
     Vec4(const Vec3 &f);
-    Vec4(const Vec3 &f, const double &w);
-    Vec4(const double& val);
-    Vec4(const double& vx, const double& vy, const double& vz, const double& vw);
-    Vec4(const double values[4]);
+    Vec4(const Vec3 &f, const float &w);
+    Vec4(const float& val);
+    Vec4(const float& vx, const float& vy, const float& vz, const float& vw);
+    Vec4(const float values[4]);
 
     /////// Accessors ///////
-    double& operator[] (int i);
-    double operator[] (int i) const;
+    float& operator[] (int i);
+    float operator[] (int i) const;
 
-    double x() const;
-    double y() const;
-    double z() const;
-    double w() const;
+    float x() const;
+    float y() const;
+    float z() const;
+    float w() const;
+
+    float* data();
 
     /////// Unary operators ///////
     Vec4 operator+ () const;
@@ -49,16 +51,16 @@ public:
     /////// Assignment unary operators ///////
     Vec4& operator+= (const Vec4 &v);
     Vec4& operator-= (const Vec4 &v);
-    Vec4& operator*= (const double &s);
-    Vec4& operator/= (const double &s);
+    Vec4& operator*= (const float &s);
+    Vec4& operator/= (const float &s);
 
 
     /////// Binary operators ///////
     friend Vec4 operator+ (const Vec4 &u, const Vec4 &v);
     friend Vec4 operator- (const Vec4 &u, const Vec4 &v);
-    friend Vec4 operator* (const Vec4 &v, const double &s);
-    friend Vec4 operator* (const double &s, const Vec4 &v);
-    friend Vec4 operator/ (const Vec4 &v, const double &s);
+    friend Vec4 operator* (const Vec4 &v, const float &s);
+    friend Vec4 operator* (const float &s, const Vec4 &v);
+    friend Vec4 operator/ (const Vec4 &v, const float &s);
 
     /////// Boolean functions ///////
     friend int operator== (const Vec4 &u, const Vec4 &v);
