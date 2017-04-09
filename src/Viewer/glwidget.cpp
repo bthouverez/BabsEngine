@@ -41,7 +41,7 @@ void GLWidget::initializeGL() {
     points.push_back(Vec3(0.5, -0.5, 0));
     points.push_back(Vec3(0.0, 0.5, 0));
 
-/*
+
     // vao
     glGenVertexArrays(1, &m_vao);
     glBindVertexArray(m_vao);
@@ -73,13 +73,13 @@ void GLWidget::initializeGL() {
     glUseProgram(0);
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-    */
+
     return;
 }
 
 void GLWidget::paintGL()
 {
-    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
    // glLoadIdentity();
    // glScalef(_scale, _scale, _scale);
@@ -91,7 +91,7 @@ void GLWidget::paintGL()
     Mat4 v = Mat4(); //m_camera.view();
     Mat4 p = Mat4(); // m_camera.projection();
     Mat4 mvp = _scalem * p * v * m;
-/*
+
     // configurer le pipeline, selectionner le vertex array a utiliser
     glBindVertexArray(m_vao);
     assert(m_vao!=0);
@@ -107,6 +107,6 @@ void GLWidget::paintGL()
     // cleaning
     glUseProgram(0);
     glBindVertexArray(0);
-    */
+
     return;
 }

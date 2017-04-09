@@ -5,6 +5,8 @@
 #include "windows.h"
 #endif
 
+#include <GL/glew.h>
+#include <GL/glut.h>
 #include <GL/gl.h>
 
 // Settings for OpenGL version
