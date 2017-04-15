@@ -21,6 +21,7 @@ add_executable(
 	./src/Viewer/shader.cpp
 	./src/Viewer/shader.h
 
+        # TO REMOVE
 	./src/Viewer/window.cpp
 	./src/Viewer/window.h	
 
@@ -28,40 +29,44 @@ add_executable(
 
 find_package(OpenGL REQUIRED)
 if(OPENGL_FOUND)
-	include_directories( ${OPENGL_INCLUDE_DIRS} )
-	target_link_libraries(BabsEngine ${OPENGL_LIBRARIES} )
+        message(STATUS "Found OpenGL")
+        include_directories( ${OPENGL_INCLUDE_DIRS} )
+        target_link_libraries(BabsEngine ${OPENGL_LIBRARIES} )
 else()
-	message(ERROR "OpenGL not found")
+        message(ERROR "OpenGL not found")
 endif()
+
 
 find_package(GLEW REQUIRED)
 if (GLEW_FOUND)
+    message(STATUS "Found GLEW")
     include_directories(${GLEW_INCLUDE_DIRS})
     link_libraries(${GLEW_LIBRARIES})
     target_link_libraries(BabsEngine ${GLEW_LIBRARIES} )
 else()
-    message(ERROR "Glew not found")
+    message(ERROR "GLEW not found")
 endif()
 
 
 
-find_package(GLUT REQUIRED)
-if(OPENGL_GLU_FOUND)
-	include_directories( ${GLUT_INCLUDE_DIRS} )
-    link_libraries(${GLUT_LIBRARY})
-	target_link_libraries(BabsEngine ${GLUT_LIBRARY} )
-else()
-	message(ERROR "GLUT not found")
-endif()
+#find_package(GLUT REQUIRED)
+#if(OPENGL_GLU_FOUND)
+#       message(STATUS "Found GLUT")
+#	include_directories( ${GLUT_INCLUDE_DIRS} )
+#    link_libraries(${GLUT_LIBRARY})
+#	target_link_libraries(BabsEngine ${GLUT_LIBRARY} )
+#else()
+#	message(ERROR "GLUT not found")
+#endif()
 
 
 
 find_package(SDL2 REQUIRED)
 if(SDL2_FOUND)
 	message(STATUS "Found SDL2")
-	include_directories(${SDL2_INCLUDE_DIR})
-    link_libraries(${SDL2_LIBRARY})
-	target_link_libraries(BabsEngine ${SDL2_LIBRARY})
+        include_directories(${SDL2_INCLUDE_DIRS})
+    link_libraries(${SDL2_LIBRARIES})
+        target_link_libraries(BabsEngine ${SDL2_LIBRARIES})
 else()
 	message(ERROR "SDL2 not found")
 endif()
