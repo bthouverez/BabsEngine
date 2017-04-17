@@ -13,7 +13,7 @@ int main(int argc, char ** argv){
     b_Window window(800, 600);
     window.init();
     window.run();
-
+    window.release();
 
     std::cout<< "Bye Poulpe" << std::endl;
     return 0;

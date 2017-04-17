@@ -15,7 +15,7 @@ void GLWidget::cleanup()
 }
 
 void GLWidget::initializeGL() {
-
+/*
     // Important : pour appeler automatiquement ta fonction de cleanUp lors de la destruction du widget.
     //connect(context(), &QOpenGLContext::aboutToBeDestroyed, this, &GLWidget::cleanup);
 
@@ -32,7 +32,7 @@ void GLWidget::initializeGL() {
 
     // camera
     m_camera = b_Camera();
-    m_camera.lookAt(Vec3(0.0, 0.0, 5.0),  Vec3(0.0, 0.0, 0.0),Vec3(0.0, 1.0, 0.0));
+    m_camera.lookAt(Vec3(0.0, 0.0, 5.0),  Vec3(0.0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0));
     m_camera.projection(800, 600, 45);
 
     // data points
@@ -73,14 +73,14 @@ void GLWidget::initializeGL() {
     glUseProgram(0);
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-
+*/
     return;
 }
 
 void GLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+/*
    // glLoadIdentity();
    // glScalef(_scale, _scale, _scale);
    // std::cout << "SCALE " << _scale << std::endl;
@@ -107,6 +107,6 @@ void GLWidget::paintGL()
     // cleaning
     glUseProgram(0);
     glBindVertexArray(0);
-
+*/
     return;
 }

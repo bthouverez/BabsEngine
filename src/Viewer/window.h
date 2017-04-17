@@ -2,6 +2,7 @@
 #define WINDOW_H_
 
 #include "gl_version.h"
+#include "glwidget.h"
 #include <SDL2/SDL.h>
 
 class b_Window {
@@ -12,16 +13,19 @@ public:
     bool init();
     void events();
     bool run();
+    void release();
 private:
 
 
     SDL_Window* _window = nullptr;
-    SDL_Renderer* _renderer = nullptr;
     SDL_GLContext _context;
+
+    //GLWidget _widget;
 
     int _width;
     int _height;
     bool _quit = false;
+    bool _fullscreen = false;
 };
 
 #endif

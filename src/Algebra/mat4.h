@@ -1,6 +1,6 @@
 /**
   @file mat4.h
-  @authors ??, refactored by B.Thouverez <bastien.thouverez -at- etu.univ-lyon1.fr>
+  @authors B.Thouverez <bastien.thouverez -at- etu.univ-lyon1.fr>
  */
 
 // Is this class really necessary? Is not a QMatrix4x4 enough?

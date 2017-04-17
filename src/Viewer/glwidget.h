@@ -8,8 +8,10 @@
 #include "../Algebra/mat4.h"
 #include "camera.h"
 
-class GLWidget
-{
+
+typedef Yann_Shader Shader;
+
+class GLWidget {
 
 public:
 	GLWidget();
@@ -19,7 +21,6 @@ public:
     //QSize sizeHint() const Q_DECL_OVERRIDE;
 
 
-protected:
 	void initializeGL();
     void paintGL();
 
@@ -27,6 +28,7 @@ protected:
 
 	void cleanup();
 
+protected:
     GLuint m_vao;
     GLuint m_buffer;
     GLuint m_instance_buffer;

@@ -1,8 +1,7 @@
 #include "shader.h"
 
-void Shader::destroy()
+void Yann_Shader::destroy()
 {
-
     glDeleteShader(vertex_);
     glDeleteShader(fragment_);
     glDeleteProgram(program_);
@@ -10,10 +9,9 @@ void Shader::destroy()
 	fragment_ = 0;
 	program_ = 0;
 	initOK_ = false;
-
 }
 
-bool Shader::init()
+bool Yann_Shader::init()
 {
 	//------- Instanciation -------
 	if (initShaderStage(vertex_, GL_VERTEX_SHADER, vertexSourceFilename_) == false)
@@ -47,7 +45,7 @@ bool Shader::init()
 
 }
 
-bool Shader::initShaderStage(GLuint &shader, GLenum shader_stage_type, std::string const &source_filename)
+bool Yann_Shader::initShaderStage(GLuint &shader, GLenum shader_stage_type, std::string const &source_filename)
 {
 
 	if (shader_stage_type != GL_VERTEX_SHADER && shader_stage_type != GL_FRAGMENT_SHADER) {
@@ -95,7 +93,7 @@ bool Shader::initShaderStage(GLuint &shader, GLenum shader_stage_type, std::stri
 	return true;
 }
 
-Shader& Shader::operator=(Shader const &shader)
+Yann_Shader& Yann_Shader::operator=(Yann_Shader const &shader)
 {
 	if (this != &shader) {
 		vertexSourceFilename_ = shader.vertexSourceFilename_;
@@ -107,6 +105,6 @@ Shader& Shader::operator=(Shader const &shader)
 	return *this;
 }
 
-GLuint Shader::getProgramID() const {
+GLuint Yann_Shader::getProgramID() const {
 	return program_;
 }

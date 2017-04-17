@@ -6,19 +6,19 @@
 #include <fstream>
 #include "gl_version.h"
 
-class Shader
+class Yann_Shader
 {
 public:
-	Shader() : err_out(std::cerr) { }
+    Yann_Shader() : err_out(std::cerr) { }
 
-	Shader(std::string vertexSourceFilename, std::string fragmentSourceFilename, std::ostream & error_out)
+    Yann_Shader(std::string vertexSourceFilename, std::string fragmentSourceFilename, std::ostream & error_out)
 		: err_out(error_out)
 		, vertexSourceFilename_(vertexSourceFilename)
 		, fragmentSourceFilename_(fragmentSourceFilename)
 		, vertex_(0), fragment_(0), program_(0), initOK_(false)
         { std::cout << "Shader construction" << std::endl; }
 
-	Shader(Shader const &shader)
+    Yann_Shader(Yann_Shader const &shader)
 		: err_out(std::cerr)
 		, vertexSourceFilename_(shader.vertexSourceFilename_)
 		, fragmentSourceFilename_(shader.fragmentSourceFilename_)
@@ -28,7 +28,7 @@ public:
 			init();
 	}
 
-	~Shader()
+    ~Yann_Shader()
 	{
 		destroy();
 	}
@@ -36,7 +36,7 @@ public:
 	bool init();
 	void destroy();
 	GLuint getProgramID() const;
-	Shader& operator=(Shader const &shader);
+    Yann_Shader& operator=(Yann_Shader const &shader);
 
 
 private:

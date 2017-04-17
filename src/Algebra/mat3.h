@@ -1,6 +1,6 @@
 /**
   @file mat3.h
-  @authors ??, refactored by B.Thouverez <bastien.thouverez -at- etu.univ-lyon1.fr>
+  @authors B.Thouverez <bastien.thouverez -at- etu.univ-lyon1.fr>
  */
 
 #ifndef MAT3_H_
