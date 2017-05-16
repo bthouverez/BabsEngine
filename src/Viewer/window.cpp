@@ -33,7 +33,7 @@ bool b_Window::init() {
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
     _window = SDL_CreateWindow(
-        "Babs Engine",
+        "Renderboy",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         _width,
@@ -73,7 +73,7 @@ void b_Window::events() {
             std::cout << "Red cross quit" << std::endl;
             _quit = true;
 
-        } else if(event.type == SDL_KEYDOWN){
+        } else if(event.type == SDL_KEYDOWN) {
 
             switch(event.key.keysym.sym) {
                 case SDLK_UP:
@@ -109,11 +109,12 @@ void b_Window::events() {
                 break;
 
                 case SDLK_ESCAPE:
+                    std::cout << "Escape quit" << std::endl;
                     _quit = true;
                 break;
 
                 default:
-                    std::cout<<"Irgendeine Taste wurde gedrückt"<<std::endl;
+                    std::cout<<"Another key pressed"<<std::endl;
                 break;
             }
         }

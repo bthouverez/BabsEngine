@@ -10,7 +10,6 @@
 #include <GL/gl.h>
 
 
-
 // Settings for OpenGL version
 #define OpenGLMajor 3
 #define OpenGLMinor 3

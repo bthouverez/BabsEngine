@@ -1,9 +1,16 @@
 cmake_minimum_required(VERSION 2.8)
-project(BabsEngine)
+project(RenderBoy)
+
+######## C++ 14 ##################################################################
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
+# eventually
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+###################################################################################
 
 add_executable(
 
-    BabsEngine
+    RenderBoy
 	./src/main.cpp
 	./src/Algebra/mat3.cpp
 	./src/Algebra/mat3.h
@@ -31,7 +38,7 @@ find_package(OpenGL REQUIRED)
 if(OPENGL_FOUND)
         message(STATUS "Found OpenGL")
         include_directories( ${OPENGL_INCLUDE_DIRS} )
-        target_link_libraries(BabsEngine ${OPENGL_LIBRARIES} )
+        target_link_libraries(RenderBoy ${OPENGL_LIBRARIES} )
 else()
         message(ERROR "OpenGL not found")
 endif()
@@ -42,7 +49,7 @@ if (GLEW_FOUND)
     message(STATUS "Found GLEW")
     include_directories(${GLEW_INCLUDE_DIRS})
     link_libraries(${GLEW_LIBRARIES})
-    target_link_libraries(BabsEngine ${GLEW_LIBRARIES} )
+    target_link_libraries(RenderBoy ${GLEW_LIBRARIES} )
 else()
     message(ERROR "GLEW not found")
 endif()
@@ -54,7 +61,7 @@ endif()
 #       message(STATUS "Found GLUT")
 #	include_directories( ${GLUT_INCLUDE_DIRS} )
 #    link_libraries(${GLUT_LIBRARY})
-#	target_link_libraries(BabsEngine ${GLUT_LIBRARY} )
+#	target_link_libraries(RenderBoy ${GLUT_LIBRARY} )
 #else()
 #	message(ERROR "GLUT not found")
 #endif()
@@ -66,7 +73,7 @@ if(SDL2_FOUND)
 	message(STATUS "Found SDL2")
         include_directories(${SDL2_INCLUDE_DIRS})
     link_libraries(${SDL2_LIBRARIES})
-        target_link_libraries(BabsEngine ${SDL2_LIBRARIES})
+        target_link_libraries(RenderBoy ${SDL2_LIBRARIES})
 else()
 	message(ERROR "SDL2 not found")
 endif()
