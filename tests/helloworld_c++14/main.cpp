@@ -8,11 +8,8 @@ int main(int argc, char ** argv){
 	std::cout << "############## TEST -- C++14 ##############" << std::endl;
 	sc.reset();
 
-    int big = 1'000'000'000;
+    int big = 1'000'000'000; // ' to make int readable, C++14 feature
     std::cout << "Big (C++14) : " << big << std::endl;
-
-    int quatre = 2**2;
-    std::cout << "Quatre : " << quatre << std::endl;
 
 	sc.text_green();
     std::cout<< "############## TEST C++14 OK ##############" << std::endl;

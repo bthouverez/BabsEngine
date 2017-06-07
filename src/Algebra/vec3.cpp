@@ -3,7 +3,7 @@
 /**
  * @brief Empty constructor
  */
-Vec3::Vec3() {}
+Vec3::Vec3() : _x(0.0), _y(0.0), _z(0.0) {}
 
 /**
  * @brief Create vector from two points
@@ -11,7 +11,7 @@ Vec3::Vec3() {}
  * @param f start point of vector
  * @param t end of vector
  */
-Vec3::Vec3(const Vec3 &f, const Vec3 &t) {
+Vec3::Vec3(const Point &f, const Point &t) {
     _x = t.x() - f.x();
     _y = t.y() - f.y();
     _z = t.z() - f.z();
@@ -22,7 +22,7 @@ Vec3::Vec3(const Vec3 &f, const Vec3 &t) {
  * @param val value given to each coordinate
  */
 Vec3::Vec3(const float& val) {
-    _x=_y=_z=val;
+    _x = _y = _z = val;
 }
 
 /**
@@ -32,7 +32,7 @@ Vec3::Vec3(const float& val) {
  * @param vz z value of vector
  */
 Vec3::Vec3(const float& vx, const float& vy, const float& vz) {
-    _x=vx; _y=vy; _z=vz;
+    _x = vx; _y = vy; _z = vz;
 }
 
 /**
@@ -40,7 +40,7 @@ Vec3::Vec3(const float& vx, const float& vy, const float& vz) {
  * @param values array of floats
  */
 Vec3::Vec3(const float values[3]) {
-    _x=values[0]; _y=values[1]; _z=values[2];
+    _x = values[0]; _y = values[1]; _z = values[2];
 }
 
 /**
@@ -112,7 +112,7 @@ Vec3 Vec3::operator+ () const {
  * @return negative current vector
  */
 Vec3 Vec3::operator- () const {
-    return Vec3(-_x,-_y,-_z);
+    return Vec3(-_x, -_y, -_z);
 }
 
 
@@ -254,7 +254,7 @@ int operator!= (const Vec3 &u,const Vec3 &v) {
  * @param v vector to display
  * @return stream with printed vector
  */
-std::ostream& operator<<(std::ostream &os, const Vec3 &v) {
+std::ostream& operator<< (std::ostream &os, const Vec3 &v) {
     os  << "(" << v._x << ", " << v._y << ", "  << v._z << ")";
     return os;
 }

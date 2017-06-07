@@ -14,7 +14,8 @@
 #include <cmath>
 #include <cassert>
 
-
+class Vec3;
+typedef Vec3 Point;
 
 /**
  * @brief The Vec3 class
@@ -26,7 +27,7 @@ protected:
 public:
     /////// Constructors ///////
     Vec3();
-    Vec3(const Vec3 &f, const Vec3 &t);
+    Vec3(const Point &f, const Point &t);
     Vec3(const float& val);
     Vec3(const float& vx, const float& vy, const float& vz);
     Vec3(const float values[3]);
@@ -73,8 +74,8 @@ public:
     friend std::ostream& operator<< (std::ostream &os, const Vec3 &v);
 
     ////// Vector operations //////
-    friend float dotProduct (const Vec3 &u, const Vec3 &v);
-    friend Vec3 crossProduct (const Vec3 &u, const Vec3 &v);
+    friend float dotProduct(const Vec3 &u, const Vec3 &v);
+    friend Vec3 crossProduct(const Vec3 &u, const Vec3 &v);
     friend float length(const Vec3 &v);
     float length();
     void normalize();
